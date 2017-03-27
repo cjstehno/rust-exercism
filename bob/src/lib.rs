@@ -22,6 +22,3 @@ fn is_question(text : &str) -> bool {
 fn is_nothing(text: &str) -> bool {
     return text.is_empty();
 }
-
-// Bob is a lackadaisical teenager. In conversation, his responses are very limited.
-// He says 'Fine. Be that way!' if you address him without actually saying anything. (empty)
