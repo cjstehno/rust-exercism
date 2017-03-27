@@ -4,35 +4,27 @@ extern crate raindrops;
 fn test_1() { assert_eq!("1", raindrops::raindrops(1)); }
 
 #[test]
-#[ignore]
 fn test_3() { assert_eq!("Pling", raindrops::raindrops(3)); }
 
 #[test]
-#[ignore]
 fn test_5() { assert_eq!("Plang", raindrops::raindrops(5)); }
 
 #[test]
-#[ignore]
 fn test_7() { assert_eq!("Plong", raindrops::raindrops(7)); }
 
 #[test]
-#[ignore]
 fn test_6() { assert_eq!("Pling", raindrops::raindrops(6)); }
 
 #[test]
-#[ignore]
 fn test_9() { assert_eq!("Pling", raindrops::raindrops(9)); }
 
 #[test]
-#[ignore]
 fn test_10() { assert_eq!("Plang", raindrops::raindrops(10)); }
 
 #[test]
-#[ignore]
 fn test_14() { assert_eq!("Plong", raindrops::raindrops(14)); }
 
 #[test]
-#[ignore]
 fn test_15() { assert_eq!("PlingPlang", raindrops::raindrops(15)); }
 
 #[test]
