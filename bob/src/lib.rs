@@ -1,13 +1,27 @@
 
-pub fn reply(input : String) -> String {
-    match input {
-        _ => "Whatever."
+pub fn reply(input : &str) -> String {
+    return match input {
+        _ if is_nothing(input)  => "Fine. Be that way!".to_string(),
+        _ if is_yelling(input)  => "Whoa, chill out!".to_string(),
+        _ if is_question(input) => "Sure.".to_string(),
+        _                       =>  "Whatever.".to_string()
     }
 }
 
+fn is_yelling(text : &str) -> bool {
+    return match text.chars().find(|ch| ch.is_lowercase() ) {
+        Some(_) => false,
+        None => true
+    }
+}
+
+fn is_question(text : &str) -> bool {
+    return text.ends_with("?");
+}
+
+fn is_nothing(text: &str) -> bool {
+    return text.is_empty();
+}
 
 // Bob is a lackadaisical teenager. In conversation, his responses are very limited.
-// Bob answers 'Sure.' if you ask him a question. (ends with ?)
-// He answers 'Whoa, chill out!' if you yell at him. (all caps)
 // He says 'Fine. Be that way!' if you address him without actually saying anything. (empty)
-// He answers 'Whatever.' to anything else.
