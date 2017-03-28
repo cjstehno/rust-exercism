@@ -1,4 +1,3 @@
-use std::iter::range_step;
 
 pub fn verse(number : u16 ) -> String {
     return match number {
@@ -8,16 +7,14 @@ pub fn verse(number : u16 ) -> String {
     }
 }
 
-#[allow(unused_variables)]
 pub fn sing(start: u16, end: u16) -> String {
-    let mut song : String = String::from("foo");
+    let mut song = Vec::new();
 
-    for v in range_step(start, end, -1) {
-        song.push_str("bar");
-        song.push_str(&verse(v).to_string());
+    for n in (end..start + 1).rev() {
+        song.push(verse(n));
     }
 
-    return song;
+    return song.join("\n");
 }
 
 fn fill_bottles(number: u16) -> String {
