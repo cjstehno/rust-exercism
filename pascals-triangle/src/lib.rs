@@ -10,11 +10,8 @@ impl PascalsTriangle {
     pub fn rows(&self) -> Vec<Vec<u32>> {
         let mut holder : Vec<Vec<u32>> = vec![];
 
-        // FIXME: these odd type conversions? (here and in for loop)
-        let zero : u32 = 0;
-
-        if &self.row_count > &zero {
-            for r in 0..&self.row_count-0 {
+        if *&self.row_count > 0 {
+            for r in 0..*&self.row_count {
                 holder.push( PascalsTriangle::row(r) );
             }
         }
