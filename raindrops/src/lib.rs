@@ -17,6 +17,6 @@ pub fn raindrops(number : u32) -> &'static str {
         return "Plong";
     }
 
-    let s : &str = number.to_string().to_owned().as_str();
-    return s;
+    // let s : &str = number.to_string().to_owned().as_str();
+    // return s;
 }
