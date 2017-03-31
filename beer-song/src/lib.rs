@@ -8,13 +8,7 @@ pub fn verse(number : u16 ) -> String {
 }
 
 pub fn sing(start: u16, end: u16) -> String {
-    let mut song = Vec::new();
-
-    for n in (end..start + 1).rev() {
-        song.push(verse(n));
-    }
-
-    return song.join("\n");
+    return (end..start+1).rev().map(verse).collect::<Vec<String>>().join("\n");
 }
 
 fn fill_bottles(number: u16) -> String {
