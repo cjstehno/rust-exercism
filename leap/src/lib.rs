@@ -7,12 +7,5 @@
 /// * unless the year is also evenly divisible by 400
 ///
 pub fn is_leap_year(year : u16) -> bool {
-    if year % 4 == 0 {
-        if year % 100 == 0 && !(year % 400 == 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    return false;
+    return year % 4 == 0 && !( year % 100 == 0 && !(year % 400 == 0) );
 }
