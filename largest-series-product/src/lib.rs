@@ -10,13 +10,8 @@ pub fn lsp(digit_string: &str, count: usize) -> Result<u32,()> {
     }
 
     let mut products : Vec<u32> = vec![];
-
-    let digits = digit_string.chars().map(to_digit).collect::<Vec<u32>>();
-
-    for series in digits.windows(count) {
-        let prod : u32 = series.iter().product();
-        println!("Product {:?}: {}", series, prod);
-        products.push( prod );
+    for series in digit_string.chars().map(to_digit).collect::<Vec<u32>>().windows(count) {
+        products.push( series.iter().product() );
     }
 
     return Ok(*products.iter().max().unwrap());
