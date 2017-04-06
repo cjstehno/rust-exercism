@@ -1,14 +1,15 @@
 
 pub fn encode( text: &str ) -> String {
-    let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".chars().collect::<Vec<char>>();
-    let codex = letters.iter().enumerate();
+    let letters: Vec<u8> = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".to_string().into_bytes();
 
-    return text.chars().map({ |c|
-        match codex.find(|x| x == c) {
-            Some(idx) => letters.index(25-idx),
-            None      => " "
-        }
-    });
+    return String::from_utf8( text.chars().map(|c| match letters.iter().position(|&x| x == c as u8) {
+        Some(idx) => letters.get_mut(25 - idx).unwrap(),
+        None      => &mut " ".to_string().into_bytes()[0]
+    } ).collect::<Vec<& mut u8>>() ).unwrap();
+}
+
+pub fn decode( text: &str ) -> String {
+    unimplemented!()
 }
 
 // def letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.toCharArray() as List
