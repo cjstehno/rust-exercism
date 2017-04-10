@@ -1,11 +1,20 @@
+use std::ascii::AsciiExt;
 
 pub fn encode( text: &str ) -> String {
+    return codex( text, true );
+}
+
+pub fn decode( text: &str ) -> String {
+    return codex(text, false);
+}
+
+fn codex( text: &str, chunked: bool ) -> String {
     let letters: Vec<char> = "abcdefghijklmnopqrstuvwxyz".to_string().chars().collect::<Vec<char>>();
     let mut swapped: Vec<char> = vec![];
 
-    let mut char_count: u16 = 0;
+    let mut char_count: u16  = 0;
 
-    for ch in text.to_lowercase().chars().filter(|&c| c != ' ') {
+    for ch in text.to_lowercase().chars().filter(|&c| c != ' ' && c.is_ascii()) {
         if ch.is_digit(10) {
             swapped.push(ch);
         } else if ch.is_alphabetic() {
@@ -17,17 +26,13 @@ pub fn encode( text: &str ) -> String {
             continue;
         }
 
-        char_count = char_count + 1;
+        char_count += 1;
 
-        if char_count == 5 {
-            char_count = 0;
+        if chunked && char_count % 5 == 0 {
             swapped.push(' ');
         }
     }
 
-    return swapped.into_iter().collect();
-}
-
-pub fn decode( text: &str ) -> String {
-    unimplemented!()
+    let output : String = swapped.into_iter().collect();
+    return output.trim().to_string();
 }
