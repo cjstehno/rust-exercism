@@ -12,12 +12,16 @@ pub fn rotate( text: &str, rot: u16 ) -> String {
                 Some(pos) => *letters.get(offset(pos, rot)).unwrap(),
                 None      => ch
             };
-            swapped.push(if ch.is_uppercase() { letter.to_uppercase().next().unwrap() } else { letter });
+            swapped.push(keep_case(ch.is_uppercase(), letter));
         }
     }
 
     let output : String = swapped.into_iter().collect();
     return output.trim().to_string();
+}
+
+fn keep_case( is_upper: bool, letter: char ) -> char {
+    return if is_upper { letter.to_uppercase().next().unwrap() } else { letter };
 }
 
 fn offset( pos: usize, rot: u16 ) -> usize {
