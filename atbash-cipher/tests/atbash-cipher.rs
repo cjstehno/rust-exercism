@@ -26,19 +26,16 @@ fn test_encode_mindblowingly() {
 }
 
 #[test]
-#[ignore]
 fn test_encode_numbers() {
     assert_eq!("gvhgr mt123 gvhgr mt", cipher::encode("Testing,1 2 3, testing."));
 }
 
 #[test]
-#[ignore]
 fn test_encode_deep_thought() {
     assert_eq!("gifgs rhurx grlm", cipher::encode("Truth is fiction."));
 }
 
 #[test]
-#[ignore]
 fn test_encode_all_the_letters() {
     assert_eq!("gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt",
         cipher::encode("The quick brown fox jumps over the lazy dog."));
