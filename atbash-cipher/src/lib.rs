@@ -1,22 +1,22 @@
 
 pub fn encode( text: &str ) -> String {
-    let letters: Vec<u8> = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".to_string().into_bytes();
+    let letters: Vec<char> = "abcdefghijklmnopqrstuvwxyz".to_string().chars().collect::<Vec<char>>();
+    let mut swapped: Vec<char> = vec![];
 
-    return String::from_utf8( text.chars().map(|c| match letters.iter().position(|&x| x == c as u8) {
-        Some(idx) => letters.get_mut(25 - idx).unwrap(),
-        None      => &mut " ".to_string().into_bytes()[0]
-    } ).collect::<Vec<& mut u8>>() ).unwrap();
+    for ch in text.to_lowercase().chars() {
+        if ch == ' ' { continue }
+
+        let letter: char = match letters.iter().position(|&x| x == ch) {
+            Some(pos) => *letters.get(25 - pos).unwrap(),
+            None      => ' '
+        };
+
+        swapped.push(letter);
+    }
+
+    return swapped.into_iter().collect();
 }
 
 pub fn decode( text: &str ) -> String {
     unimplemented!()
 }
-
-// def letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.toCharArray() as List
-//
-// 'The quick brown fox jumps over the lazy dog'.toCharArray().collect { c->
-//     if( c == ' '){ return ' ' }
-//
-//     int letter = letters.indexOf(c.toUpperCase())
-//     letters[25-letter]
-// }

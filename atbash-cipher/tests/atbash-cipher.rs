@@ -6,25 +6,21 @@ fn test_encode_yes() {
 }
 
 #[test]
-#[ignore]
 fn test_encode_no() {
     assert_eq!("ml", cipher::encode("no"));
 }
 
 #[test]
-#[ignore]
 fn test_encode_omg() {
     assert_eq!("lnt", cipher::encode("OMG"));
 }
 
 #[test]
-#[ignore]
 fn test_encode_spaces() {
     assert_eq!("lnt", cipher::encode("O M G"));
 }
 
 #[test]
-#[ignore]
 fn test_encode_mindblowingly() {
     assert_eq!("nrmwy oldrm tob", cipher::encode("mindblowingly"));
 }
