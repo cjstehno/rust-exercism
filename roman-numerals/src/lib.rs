@@ -89,5 +89,5 @@ impl Roman {
             },
             None     => ""
         };
-    }    
+    }
 }
