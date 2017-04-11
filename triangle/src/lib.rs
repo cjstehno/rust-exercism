@@ -6,7 +6,7 @@ pub struct Triangle {
 impl Triangle {
 
     pub fn build( sides: [u16; 3] ) -> Result<Triangle,()> {
-        if Triangle::sides_valid(sides) {
+        if Triangle::sides_non_zero(sides) && Triangle::sides_sum(sides) {
             Ok(Triangle { sides: sides })
 
         } else {
@@ -14,24 +14,12 @@ impl Triangle {
         }
     }
 
-    fn sides_valid(sides: [u16; 3]) -> bool {
-        return sides.iter().all(|s| s > &0) && Triangle::sides_sum(sides);
+    fn sides_non_zero(sides: [u16; 3]) -> bool {
+        return sides[0] > 0 && sides[1] > 0 && sides[2] > 0;
     }
 
     fn sides_sum(sides: [u16; 3]) -> bool {
-        if sides[0] + sides[1] < sides[2] {
-            return false;
-        }
-
-        if sides[0] + sides[2] < sides[1] {
-            return false;
-        }
-
-        if sides[1] + sides[2] < sides[0] {
-            return false;
-        }
-
-        return true;
+        return sides[0] + sides[1] >= sides[2] && sides[0] + sides[2] >= sides[1] && sides[1] + sides[2] >= sides[0];
     }
 
     pub fn is_equilateral(&self) -> bool {
