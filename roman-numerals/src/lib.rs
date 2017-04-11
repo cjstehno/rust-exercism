@@ -12,7 +12,16 @@ impl Roman {
         let val_str = self.value.to_string();
         let mut rev_chars = val_str.chars().rev();
 
-        let ones = match rev_chars.next() {
+        let ones = Roman::ones(rev_chars.next());
+        let tens = Roman::tens(rev_chars.next());
+        let hundreds = Roman::hundreds(rev_chars.next());
+        let thousands = Roman::thousands(rev_chars.next());
+
+        return format!("{}{}{}{}", thousands, hundreds, tens, ones);
+    }
+
+    fn ones( value: Option<char> ) -> &'static str {
+        return match value {
             Some(ch) => match ch {
                 '0' => "",
                 '1' => "I",
@@ -28,8 +37,10 @@ impl Roman {
             },
             None => panic!("Unexpected ones value!")
         };
+    }
 
-        let tens = match rev_chars.next() {
+    fn tens( value: Option<char> ) -> &'static str {
+        return match value {
             Some(ch) => match ch {
                 '0' => "",
                 '1' => "X",
@@ -43,10 +54,12 @@ impl Roman {
                 '9' => "XC",
                 _   => ""
             },
-            None     => ""
+            None => ""
         };
+    }
 
-        let hundreds = match rev_chars.next() {
+    fn hundreds( value: Option<char> ) -> &'static str {
+        return match value {
             Some(ch) => match ch {
                 '0' => "",
                 '1' => "C",
@@ -60,10 +73,12 @@ impl Roman {
                 '9' => "CM",
                 _   => ""
             },
-            None     => ""
+            None => ""
         };
+    }
 
-        let thousands = match rev_chars.next() {
+    fn thousands( value: Option<char> ) -> &'static str {
+        return match value {
             Some(ch) => match ch {
                 '0' => "",
                 '1' => "M",
@@ -74,7 +89,5 @@ impl Roman {
             },
             None     => ""
         };
-
-        return format!("{}{}{}{}", thousands, hundreds, tens, ones);
-    }
+    }    
 }
