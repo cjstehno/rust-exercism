@@ -15,7 +15,7 @@ fn test_sixth_prime() {
     assert_eq!(np::nth(6), Ok(13));
 }
 
-#[test]
+#[test] // this one is slow
 fn test_big_prime() {
     assert_eq!(np::nth(10001), Ok(104743));
 }
