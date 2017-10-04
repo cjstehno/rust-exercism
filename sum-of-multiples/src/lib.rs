@@ -11,5 +11,5 @@ pub fn sum_of_multiples(number: u32, multiples: &Vec<u32>) -> u32 {
         }
     }
 
-    return numbers.iter().fold(0, |sum,n| sum + n);
+    numbers.iter().fold(0, |sum,n| sum + n)
 }
