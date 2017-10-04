@@ -4,7 +4,7 @@ pub fn factors(number: u64) -> Vec<u64> {
     let mut n: u64 = 1;
     let mut current: u64 = number;
 
-    while n <= number {
+    while n <= current {
         if current % n == 0 {
             if is_prime(n) {
                 prime_factors.push(n);
