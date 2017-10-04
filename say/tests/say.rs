@@ -25,19 +25,16 @@ fn test_one() {
 }
 
 #[test]
-#[ignore]
 fn test_fourteen() {
     assert_eq!(say::encode(14), String::from("fourteen"));
 }
 
 #[test]
-#[ignore]
 fn test_twenty() {
     assert_eq!(say::encode(20), String::from("twenty"));
 }
 
 #[test]
-#[ignore]
 fn test_twenty_two() {
     assert_eq!(say::encode(22), String::from("twenty-two"));
 }
