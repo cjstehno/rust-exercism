@@ -9,13 +9,13 @@ pub fn reply(input : &str) -> String {
 }
 
 fn is_yelling(text : &str) -> bool {
-    return text.chars().find(|ch| ch.is_lowercase() ).is_none();
+    text.chars().find(|ch| ch.is_lowercase() ).is_none()
 }
 
 fn is_question(text : &str) -> bool {
-    return text.ends_with("?");
+    text.ends_with("?")
 }
 
 fn is_nothing(text: &str) -> bool {
-    return text.is_empty();
+    text.is_empty()
 }

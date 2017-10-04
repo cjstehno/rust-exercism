@@ -8,12 +8,14 @@ pub fn verse(number : u16 ) -> String {
 }
 
 pub fn sing(start: u16, end: u16) -> String {
-    return (end..start+1).rev().map(verse).collect::<Vec<String>>().join("\n");
+    (end..start+1).rev().map(verse).collect::<Vec<String>>().join("\n")
 }
 
 fn fill_bottles(number: u16) -> String {
     return format!(
         "{n} bottles of beer on the wall, {n} bottles of beer.\nTake one down and pass it around, {next} bottle{plural} of beer on the wall.\n",
-        n = number, next = number-1, plural = if number - 1 > 1 { "s" } else { "" }
+        n = number,
+        next = number-1,
+        plural = if number - 1 > 1 { "s" } else { "" }
     );
 }
