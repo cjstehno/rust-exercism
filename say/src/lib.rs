@@ -15,39 +15,23 @@ pub fn encode(number: u64) -> String {
     let mut words: String = String::new();
     let mut current = number;
 
-    if current > 999_999_999_999_999_999 {
-        words.push_str(&format!("{} quintillion ", encode_part(current / 1_000_000_000_000_000_000)));
-        current = current % 1_000_000_000_000_000_000;
-    }
-
-    if current > 999_999_999_999_999 {
-        words.push_str(&format!("{} quadrillion ", encode_part(current / 1_000_000_000_000_000)));
-        current = current % 1_000_000_000_000_000;
-    }
-
-    if current > 999_999_999_999 {
-        words.push_str(&format!("{} trillion ", encode_part(current / 1_000_000_000_000)));
-        current = current % 1_000_000_000_000;
-    }
-
-    if current > 999_999_999 {
-        words.push_str(&format!("{} billion ", encode_part(current / 1_000_000_000)));
-        current = current % 1_000_000_000;
-    }
-
-    if current > 999_999 {
-        words.push_str(&format!("{} million ", encode_part(current / 1_000_000)));
-        current = current % 1_000_000;
-    }
-
-    if current > 999 {
-        words.push_str(&format!("{} thousand ", encode_part(current / 1_000)));
-        current = current % 1_000;
-    }
+    encode_for(&mut words, &mut current, 1_000_000_000_000_000_000, "quintillion");
+    encode_for(&mut words, &mut current, 1_000_000_000_000_000, "quadrillion");
+    encode_for(&mut words, &mut current, 1_000_000_000_000, "trillion");
+    encode_for(&mut words, &mut current, 1_000_000_000, "billion");
+    encode_for(&mut words, &mut current, 1_000_000, "million");
+    encode_for(&mut words, &mut current, 1_000, "thousand");
 
     words.push_str(encode_part(current).trim());
 
     return words.trim().to_string();
+}
+
+fn encode_for(words: &mut String, current: &mut u64, divisor: u64, label: &'static str) {
+    if *current > (divisor - 1) {
+        words.push_str(&format!("{} {} ", encode_part(*current / divisor), label));
+        *current = *current % divisor;
+    }
 }
 
 fn encode_part(number: u64) -> String {
@@ -62,11 +46,7 @@ fn encode_part(number: u64) -> String {
         words = NUMBER_NAMES[(current % 10) as usize].to_string();
         current /= 10;
 
-        if words.is_empty() {
-            words = format!("{}{}", TENS_NAMES[(current % 10) as usize], words.trim());
-        } else {
-            words = format!("{}-{}", TENS_NAMES[(current % 10) as usize], words.trim());
-        }
+        words = format!("{}{}{}", TENS_NAMES[(current % 10) as usize], if words.is_empty() { "" } else { "-" }, words.trim());
         current /= 10;
     }
 
