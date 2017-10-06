@@ -8,7 +8,6 @@ fn test_encode_empty_string() {
 }
 
 #[test]
-#[ignore]
 fn test_encode_single_characters() {
     assert_eq!("XYZ", rle::encode("XYZ"));
 }
