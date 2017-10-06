@@ -7,22 +7,21 @@ const TENS_NAMES: [&str; 10] = [
     "", " ten", " twenty", " thirty", " forty", " fifty", " sixty", " seventy", " eighty", " ninety"
 ];
 
-pub fn encode(number: u64) -> String {
+pub fn encode(mut number: u64) -> String {
     if number == 0 {
         return String::from("zero");
     }
 
     let mut words: String = String::new();
-    let mut current = number;
 
-    encode_for(&mut words, &mut current, 1_000_000_000_000_000_000, "quintillion");
-    encode_for(&mut words, &mut current, 1_000_000_000_000_000, "quadrillion");
-    encode_for(&mut words, &mut current, 1_000_000_000_000, "trillion");
-    encode_for(&mut words, &mut current, 1_000_000_000, "billion");
-    encode_for(&mut words, &mut current, 1_000_000, "million");
-    encode_for(&mut words, &mut current, 1_000, "thousand");
+    encode_for(&mut words, &mut number, 1_000_000_000_000_000_000, "quintillion");
+    encode_for(&mut words, &mut number, 1_000_000_000_000_000, "quadrillion");
+    encode_for(&mut words, &mut number, 1_000_000_000_000, "trillion");
+    encode_for(&mut words, &mut number, 1_000_000_000, "billion");
+    encode_for(&mut words, &mut number, 1_000_000, "million");
+    encode_for(&mut words, &mut number, 1_000, "thousand");
 
-    words.push_str(encode_part(current).trim());
+    words.push_str(encode_part(number).trim());
 
     return words.trim().to_string();
 }
@@ -34,25 +33,23 @@ fn encode_for(words: &mut String, current: &mut u64, divisor: u64, label: &'stat
     }
 }
 
-fn encode_part(number: u64) -> String {
+fn encode_part(mut number: u64) -> String {
     let mut words: String;
 
-    let mut current = number;
-
-    if current % 100 < 20 {
-        words = NUMBER_NAMES[(current % 100) as usize].to_string();
-        current /= 100;
+    if number % 100 < 20 {
+        words = NUMBER_NAMES[(number % 100) as usize].to_string();
+        number /= 100;
     } else {
-        words = NUMBER_NAMES[(current % 10) as usize].to_string();
-        current /= 10;
+        words = NUMBER_NAMES[(number % 10) as usize].to_string();
+        number /= 10;
 
-        words = format!("{}{}{}", TENS_NAMES[(current % 10) as usize], if words.is_empty() { "" } else { "-" }, words.trim());
-        current /= 10;
+        words = format!("{}{}{}", TENS_NAMES[(number % 10) as usize], if words.is_empty() { "" } else { "-" }, words.trim());
+        number /= 10;
     }
 
-    if current == 0 {
+    if number == 0 {
         return words.trim().to_string();
     }
 
-    return format!("{} hundred{}", NUMBER_NAMES[current as usize], words).trim().to_string();
+    return format!("{} hundred{}", NUMBER_NAMES[number as usize], words).trim().to_string();
 }
