@@ -1,26 +1,33 @@
 pub fn encode(text: &str) -> String {
     let mut encoded = String::new();
 
-    let mut position = 0;
-    let mut count = 0;
+    let mut count = 1;
+    let mut current: Option<char> = None;
 
     for c in text.chars() {
-        if encoded.is_empty() {
-            encoded.push_str(format!("{}", c).as_str());
-            position += 1;
-
-        } else {
-            let idx: usize = position - 1;
-            if let Some(x) = encoded.get(idx..idx) {
-                if x.chars().eq(c) {
-                    count += 1;
-                } else if let Some(next) = encoded.get((position as usize)..(position as usize)) {
-                    let enc = format!("{}{}", count, next);
-                    encoded.insert_str((position - 1) as usize, enc.as_str());
-                    count = 0;
-                    position += enc.len();
+        if let None = current {
+            current = Some(c);
+        } else if let Some(cur) = current {
+            if cur == c {
+                count += 1;
+            } else {
+                if count > 1 {
+                    encoded.push_str(&format!("{}{}", count, cur));
+                } else {
+                    encoded.push_str(&format!("{}", cur));
                 }
+
+                current = Some(c);
+                count = 1;
             }
+        }
+    }
+
+    if let Some(cur) = current {
+        if count > 1 {
+            encoded.push_str(&format!("{}{}", count, cur));
+        } else {
+            encoded.push_str(&format!("{}", cur));
         }
     }
 

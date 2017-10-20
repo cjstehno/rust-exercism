@@ -13,26 +13,22 @@ fn test_encode_single_characters() {
 }
 
 #[test]
-#[ignore]
 fn test_encode_string_with_no_single_characters() {
     assert_eq!("2A3B4C", rle::encode("AABBBCCCC"));
 }
 
 #[test]
-#[ignore]
 fn test_encode_single_characters_mixed_with_repeated_characters() {
     assert_eq!("12WB12W3B24WB", rle::encode(
         "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"));
 }
 
 #[test]
-#[ignore]
 fn test_encode_multiple_whitespace_mixed_in_string() {
     assert_eq!("2 hs2q q2w2 ", rle::encode("  hsqq qww  "));
 }
 
 #[test]
-#[ignore]
 fn test_encode_lowercase_characters() {
     assert_eq!("2a3b4c", rle::encode("aabbbcccc"));
 }
