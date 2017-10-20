@@ -23,6 +23,7 @@ pub fn encode(text: &str) -> String {
         }
     }
 
+    // TODO: some refactoring
     if let Some(cur) = current {
         if count > 1 {
             encoded.push_str(&format!("{}{}", count, cur));
@@ -34,6 +35,20 @@ pub fn encode(text: &str) -> String {
     encoded
 }
 
-pub fn decode(text: &str) -> &str {
-    unimplemented!()
+pub fn decode(text: &str) -> String {
+    let mut decoded = Vec::<String>::new();
+    let mut digits = Vec::<String>::new();
+
+    for c in text.chars() {
+        if c.is_numeric(){
+            digits.push(c.to_string());
+
+        } else {
+            let count = digits.join("").parse().unwrap_or(1);
+            decoded.push(c.to_string().repeat(count));
+            digits.clear();
+        }
+    }
+
+    decoded.join("")
 }
