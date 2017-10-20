@@ -6,11 +6,7 @@ pub fn collatz(mut n: u64) -> Result<u64, &'static str> {
         let mut steps: u64 = 0;
 
         while n != 1 {
-            if n % 2 == 0 {
-                n = n / 2;
-            } else {
-                n = (n * 3) + 1;
-            }
+            n = if n % 2 == 0 { n / 2 } else { (n * 3) + 1 };
             steps += 1;
         }
 
