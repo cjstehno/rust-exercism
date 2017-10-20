@@ -1,5 +1,5 @@
 pub fn encode(text: &str) -> String {
-    let mut encoded = String::new();
+    let mut encoded = Vec::<String>::new();
 
     let mut count = 1;
     let mut current: Option<char> = None;
@@ -11,28 +11,27 @@ pub fn encode(text: &str) -> String {
             if cur == c {
                 count += 1;
             } else {
-                if count > 1 {
-                    encoded.push_str(&format!("{}{}", count, cur));
-                } else {
-                    encoded.push_str(&format!("{}", cur));
-                }
-
+                push_encoded(&mut encoded, count, cur);
                 current = Some(c);
                 count = 1;
             }
         }
     }
 
-    // TODO: some refactoring
+    // pick up the last char
     if let Some(cur) = current {
-        if count > 1 {
-            encoded.push_str(&format!("{}{}", count, cur));
-        } else {
-            encoded.push_str(&format!("{}", cur));
-        }
+        push_encoded(&mut encoded, count, cur);
     }
 
-    encoded
+    encoded.join("")
+}
+
+fn push_encoded(encoded: &mut Vec<String>, count: u16, current: char) {
+    if count > 1 {
+        encoded.push(format!("{}{}", count, current));
+    } else {
+        encoded.push(format!("{}", current));
+    }
 }
 
 pub fn decode(text: &str) -> String {
@@ -40,9 +39,8 @@ pub fn decode(text: &str) -> String {
     let mut digits = Vec::<String>::new();
 
     for c in text.chars() {
-        if c.is_numeric(){
+        if c.is_numeric() {
             digits.push(c.to_string());
-
         } else {
             let count = digits.join("").parse().unwrap_or(1);
             decoded.push(c.to_string().repeat(count));
