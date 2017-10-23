@@ -3,26 +3,19 @@ pub fn classify(number: u64) -> Result<Classification, &'static str> {
         return Err("Number must be positive");
     }
 
-    match calculate_aliquot(number) {
-        a if a == number => Ok(Classification::Perfect),
-        a if a > number => Ok(Classification::Abundant),
-        _ => Ok(Classification::Deficient)
-    }
+    Ok(match calculate_aliquot(number) {
+        a if a == number => Classification::Perfect,
+        a if a > number => Classification::Abundant,
+        _ => Classification::Deficient
+    })
 }
 
 fn calculate_aliquot(number: u64) -> u64 {
-    let mut sum = 0;
-
-    for n in 1..number {
-        if number % n == 0 {
-            sum += n;
-        }
-    }
-
-    sum
+    (1..number).filter(|x| number % x == 0 ).fold(0, |acc, x| acc + x)
 }
 
-#[derive(Debug)] #[derive(PartialEq)]
+#[derive(Debug)]
+#[derive(PartialEq)]
 pub enum Classification {
     Perfect,
     Abundant,

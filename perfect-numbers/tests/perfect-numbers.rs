@@ -8,6 +8,11 @@ fn basic() {
 }
 
 #[test]
+fn six() {
+    assert_eq!(classify(6), Ok(Classification::Perfect));
+}
+
+#[test]
 fn test_all() {
     struct TestClassification {
         num: u64,
