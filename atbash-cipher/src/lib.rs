@@ -1,15 +1,17 @@
 use std::ascii::AsciiExt;
 
+const LETTERS: &'static str = "abcdefghijklmnopqrstuvwxyz";
+
 pub fn encode( text: &str ) -> String {
-    return codex( text, true );
+    codex(text, true)
 }
 
 pub fn decode( text: &str ) -> String {
-    return codex(text, false);
+    codex(text, false)
 }
 
 fn codex( text: &str, chunked: bool ) -> String {
-    let letters: Vec<char> = "abcdefghijklmnopqrstuvwxyz".to_string().chars().collect::<Vec<char>>();
+    let letters: Vec<char> = LETTERS.to_string().chars().collect::<Vec<char>>();
     let mut swapped: Vec<char> = vec![];
 
     let mut char_count: u16  = 0;
@@ -34,5 +36,5 @@ fn codex( text: &str, chunked: bool ) -> String {
     }
 
     let output : String = swapped.into_iter().collect();
-    return output.trim().to_string();
+    output.trim().to_string()
 }
