@@ -1,3 +1,3 @@
-pub fn encrypt(_: &str) -> String {
+pub fn encrypt(text: &str) -> String {
     unimplemented!()
 }
