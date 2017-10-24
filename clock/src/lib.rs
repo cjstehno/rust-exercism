@@ -22,6 +22,8 @@ impl Clock {
             clock_minutes += (1440 - (i16::abs(hours) * 60) % 1440) as u32;
         }
 
+        clock_minutes = clock_minutes % 1440;
+
         Clock { minutes: clock_minutes }
     }
 
