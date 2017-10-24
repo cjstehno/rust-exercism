@@ -12,9 +12,9 @@ pub fn word_count( text: &str ) -> HashMap<String, u32> {
         words.insert(word, count + 1);
     }
 
-    return words;
+    words
 }
 
 fn word_mapper( word: &str ) -> String {
-    return word.trim_matches(|c: char| !c.is_alphanumeric() ).to_string().to_lowercase();
+    word.trim_matches(|c: char| !c.is_alphanumeric() ).to_string().to_lowercase()
 }
