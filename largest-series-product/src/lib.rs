@@ -14,9 +14,9 @@ pub fn lsp(digit_string: &str, count: usize) -> Result<u32,()> {
         max_product = max( max_product, series.iter().product() );
     }
 
-    return Ok(max_product);
+    Ok(max_product)
 }
 
 fn to_digit(ch : char) -> u32 {
-    return ch.to_digit(10).unwrap();
+    ch.to_digit(10).unwrap()
 }
