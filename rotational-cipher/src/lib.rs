@@ -1,6 +1,7 @@
+const LETTERS : &'static str = "abcdefghijklmnopqrstuvwxyz";
 
 pub fn rotate( text: &str, rot: u16 ) -> String {
-    let letters: Vec<char> = "abcdefghijklmnopqrstuvwxyz".to_string().chars().collect::<Vec<char>>();
+    let letters: Vec<char> = LETTERS.to_string().chars().collect::<Vec<char>>();
     let mut swapped: Vec<char> = vec![];
 
     for ch in text.chars() {
@@ -17,14 +18,14 @@ pub fn rotate( text: &str, rot: u16 ) -> String {
     }
 
     let output : String = swapped.into_iter().collect();
-    return output.trim().to_string();
+    output.trim().to_string()
 }
 
 fn keep_case( is_upper: bool, letter: char ) -> char {
-    return if is_upper { letter.to_uppercase().next().unwrap() } else { letter };
+    if is_upper { letter.to_uppercase().next().unwrap() } else { letter }
 }
 
 fn offset( pos: usize, rot: u16 ) -> usize {
     let index = pos + rot as usize;
-    return if index > 25 { index - 26 } else { index }
+    if index > 25 { index - 26 } else { index }
 }

@@ -9,5 +9,5 @@ pub fn transform( input : &BTreeMap<i32, Vec<String>> ) -> BTreeMap<String, i32>
         }
     }
 
-    return output;
+    output
 }
