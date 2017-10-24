@@ -1,34 +1,37 @@
 use std::fmt;
 
+const MINUTES_IN_DAY: u64 = 1440;
+
 #[derive(Debug)]
 #[derive(PartialEq)]
 pub struct Clock {
-    minutes: u32
+    minutes: u64
 }
 
 impl Clock {
     pub fn new(hours: i16, minutes: i16) -> Clock {
-        let mut clock_minutes: u32 = 0;
+        let mut clock_minutes: u64 = 0;
 
         if minutes >= 0 {
-            clock_minutes = minutes as u32 % 1440;
+            clock_minutes = minutes as u64 % MINUTES_IN_DAY;
         } else {
-            clock_minutes = 1440 - (i16::abs(minutes) % 1440) as u32;
+            clock_minutes = MINUTES_IN_DAY - (i16::abs(minutes) as u64 % MINUTES_IN_DAY);
         }
 
         if hours >= 0 {
-            clock_minutes += hours as u32 * 60 % 1440;
+            clock_minutes += hours as u64 * 60 % MINUTES_IN_DAY;
         } else {
-            clock_minutes += (1440 - (i16::abs(hours) * 60) % 1440) as u32;
+            clock_minutes += MINUTES_IN_DAY - (i16::abs(hours) * 60) as u64 % MINUTES_IN_DAY;
         }
 
-        clock_minutes = clock_minutes % 1440;
+        clock_minutes = clock_minutes % MINUTES_IN_DAY;
 
         Clock { minutes: clock_minutes }
     }
 
     pub fn add_minutes(&self, mins: i64) -> Clock {
-        unimplemented!()
+        let clock_minutes = (self.minutes + mins as u64) % MINUTES_IN_DAY;
+        Clock { minutes: clock_minutes }
     }
 }
 
