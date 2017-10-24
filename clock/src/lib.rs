@@ -10,32 +10,22 @@ pub struct Clock {
 
 impl Clock {
     pub fn new(hours: i64, minutes: i64) -> Clock {
-        let mut clock_minutes: i64 = if minutes >= 0 {
-            minutes % MINUTES_IN_DAY
-        } else {
-            MINUTES_IN_DAY - (i64::abs(minutes) % MINUTES_IN_DAY)
-        };
+        Clock::create(Clock::normalize_minutes(minutes) + Clock::normalize_minutes(hours * 60))
+    }
 
-        if hours >=0 {
-            clock_minutes += (hours * 60) % MINUTES_IN_DAY;
-        } else {
-            clock_minutes += MINUTES_IN_DAY - (i64::abs(hours * 60) % MINUTES_IN_DAY);
-        }
-
-        Clock { minutes: (clock_minutes % MINUTES_IN_DAY) as u64 }
+    fn create(minutes: i64) -> Clock {
+        Clock { minutes: (minutes % MINUTES_IN_DAY) as u64 }
     }
 
     pub fn add_minutes(&self, mins: i64) -> Clock {
-        let mut clock_minutes: i64 = self.minutes as i64;
+        Clock::create(self.minutes as i64 + Clock::normalize_minutes(mins))
+    }
 
+    fn normalize_minutes(mins: i64) -> i64 {
         if mins >= 0 {
-            clock_minutes += mins % MINUTES_IN_DAY;
+            mins % MINUTES_IN_DAY
         } else {
-            clock_minutes += MINUTES_IN_DAY - (i64::abs(mins) % MINUTES_IN_DAY)
-        };
-
-        Clock {
-            minutes: (clock_minutes % MINUTES_IN_DAY) as u64
+            MINUTES_IN_DAY - (i64::abs(mins) % MINUTES_IN_DAY)
         }
     }
 }
