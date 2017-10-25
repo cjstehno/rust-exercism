@@ -17,11 +17,11 @@ impl Roman {
         let hundreds = Roman::hundreds(rev_chars.next());
         let thousands = Roman::thousands(rev_chars.next());
 
-        return format!("{}{}{}{}", thousands, hundreds, tens, ones);
+        format!("{}{}{}{}", thousands, hundreds, tens, ones)
     }
 
     fn ones( value: Option<char> ) -> &'static str {
-        return match value {
+        match value {
             Some(ch) => match ch {
                 '0' => "",
                 '1' => "I",
@@ -36,11 +36,11 @@ impl Roman {
                 _   => panic!("Unexpected ones value!")
             },
             None => panic!("Unexpected ones value!")
-        };
+        }
     }
 
     fn tens( value: Option<char> ) -> &'static str {
-        return match value {
+        match value {
             Some(ch) => match ch {
                 '0' => "",
                 '1' => "X",
@@ -55,11 +55,11 @@ impl Roman {
                 _   => ""
             },
             None => ""
-        };
+        }
     }
 
     fn hundreds( value: Option<char> ) -> &'static str {
-        return match value {
+        match value {
             Some(ch) => match ch {
                 '0' => "",
                 '1' => "C",
@@ -74,11 +74,11 @@ impl Roman {
                 _   => ""
             },
             None => ""
-        };
+        }
     }
 
     fn thousands( value: Option<char> ) -> &'static str {
-        return match value {
+        match value {
             Some(ch) => match ch {
                 '0' => "",
                 '1' => "M",
@@ -88,6 +88,6 @@ impl Roman {
                 _   => ""
             },
             None     => ""
-        };
+        }
     }
 }

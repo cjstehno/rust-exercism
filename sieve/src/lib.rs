@@ -1,6 +1,5 @@
-
-pub fn primes_up_to( max : u16 ) -> Vec<u16> {
-    let mut candidates : Vec<bool> = vec![true; (max + 1) as usize];
+pub fn primes_up_to(max: u16) -> Vec<u16> {
+    let mut candidates: Vec<bool> = vec![true; (max + 1) as usize];
     candidates[0] = false;
     candidates[1] = false;
 
@@ -17,13 +16,5 @@ pub fn primes_up_to( max : u16 ) -> Vec<u16> {
         factor += 1;
     }
 
-    let mut primes : Vec<u16> = vec![];
-
-    for (index, value) in candidates.iter().enumerate() {
-        if *value {
-            primes.push( index as u16 );
-        }
-    }
-
-    return primes;
+    candidates.iter().enumerate().filter(|x| *x.1).map(|x| x.0 as u16).collect()
 }

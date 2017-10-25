@@ -1,7 +1,6 @@
 
 
 pub fn abbreviate( name: &str ) -> String {
-    // return name.split_whitespace().map(|w| w.to_uppercase().chars().nth(0).unwrap() ).collect();
     let mut abbr : Vec<char> = Vec::new();
 
     for word in name.replace('-', " ").split_whitespace() {
@@ -15,5 +14,5 @@ pub fn abbreviate( name: &str ) -> String {
         }
     }
 
-    return abbr.into_iter().collect();
+    abbr.into_iter().collect()
 }

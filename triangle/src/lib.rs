@@ -15,23 +15,23 @@ impl Triangle {
     }
 
     fn sides_non_zero(sides: [u16; 3]) -> bool {
-        return sides[0] > 0 && sides[1] > 0 && sides[2] > 0;
+        sides[0] > 0 && sides[1] > 0 && sides[2] > 0
     }
 
     fn sides_sum(sides: [u16; 3]) -> bool {
-        return sides[0] + sides[1] >= sides[2] && sides[0] + sides[2] >= sides[1] && sides[1] + sides[2] >= sides[0];
+        sides[0] + sides[1] >= sides[2] && sides[0] + sides[2] >= sides[1] && sides[1] + sides[2] >= sides[0]
     }
 
     pub fn is_equilateral(&self) -> bool {
-        return Triangle::count_equal_sides(self) == 3;
+        Triangle::count_equal_sides(self) == 3
     }
 
     pub fn is_scalene(&self) -> bool {
-        return Triangle::count_equal_sides(self) == 0;
+        Triangle::count_equal_sides(self) == 0
     }
 
     pub fn is_isosceles(&self) -> bool {
-        return Triangle::count_equal_sides(self) >= 1;
+        Triangle::count_equal_sides(self) >= 1
     }
 
     fn count_equal_sides(&self) -> u16 {
@@ -49,6 +49,6 @@ impl Triangle {
             count += 1;
         }
 
-        return count;
+        count
     }
 }

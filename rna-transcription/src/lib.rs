@@ -9,7 +9,7 @@ pub struct RibonucleicAcid {
 
 impl RibonucleicAcid {
     pub fn new( nucleotides: &str ) -> RibonucleicAcid {
-        return RibonucleicAcid { nucleotides: nucleotides.to_string() };
+        RibonucleicAcid { nucleotides: nucleotides.to_string() }
     }
 }
 
@@ -27,7 +27,7 @@ pub struct DeoxyribonucleicAcid {
 impl DeoxyribonucleicAcid {
 
     pub fn new( nucleotides: &str ) -> DeoxyribonucleicAcid {
-        return DeoxyribonucleicAcid { nucleotides: nucleotides.to_string() };
+        DeoxyribonucleicAcid { nucleotides: nucleotides.to_string() }
     }
 
     pub fn to_rna(&self) -> RibonucleicAcid {
@@ -39,6 +39,6 @@ impl DeoxyribonucleicAcid {
             _   => panic!("Invalid nucleotides")
         }).into_iter().collect();
 
-        return RibonucleicAcid::new(&transcribed);
+        RibonucleicAcid::new(&transcribed)
     }
 }
