@@ -22,7 +22,6 @@ fn test_func_square_single() {
 }
 
 #[test]
-#[ignore]
 fn test_func_square_short() {
     let input = vec![2, 3, 4, 5];
     let expected = vec![4, 9, 16, 25];
@@ -30,7 +29,6 @@ fn test_func_square_short() {
 }
 
 #[test]
-#[ignore]
 fn test_func_square_long_with_neg() {
     let input = vec![2, -3, -2, 3, 4, 3, 4, 5, 100, 8, 16, 34];
     let expected = vec![4, 9, 4, 9, 16, 9, 16, 25, 10000, 64, 256, 1156];
@@ -38,7 +36,6 @@ fn test_func_square_long_with_neg() {
 }
 
 #[test]
-#[ignore]
 fn test_func_abs_value_with_neg() {
     let input = vec![-3];
     let expected = vec![3];
@@ -46,7 +43,6 @@ fn test_func_abs_value_with_neg() {
 }
 
 #[test]
-#[ignore]
 fn test_func_abs_value_long() {
     let input = vec![-3, 5, -10, 4, 100, -1234, 55443];
     let expected = vec![3, 5, 10, 4, 100, 1234, 55443];
@@ -54,7 +50,6 @@ fn test_func_abs_value_long() {
 }
 
 #[test]
-#[ignore]
 fn test_closure_square_single() {
     let input = vec![2];
     let expected = vec![4];
@@ -62,7 +57,6 @@ fn test_closure_square_single() {
 }
 
 #[test]
-#[ignore]
 fn test_closure_square_short() {
     let input = vec![2, 3, 4, 5];
     let expected = vec![4, 9, 16, 25];
@@ -70,7 +64,6 @@ fn test_closure_square_short() {
 }
 
 #[test]
-#[ignore]
 fn test_closure_square_long_with_neg() {
     let input = vec![2, -3, -2, 3, 4, 3, 4, 5, 100, 8, 16, 34];
     let expected = vec![4, 9, 4, 9, 16, 9, 16, 25, 10000, 64, 256, 1156];
@@ -78,7 +71,6 @@ fn test_closure_square_long_with_neg() {
 }
 
 #[test]
-#[ignore]
 fn test_closure_abs_value_with_neg() {
     let input = vec![-3];
     let expected = vec![3];
@@ -86,7 +78,6 @@ fn test_closure_abs_value_with_neg() {
 }
 
 #[test]
-#[ignore]
 fn test_closure_abs_value_long() {
     let input = vec![-3, 5, -10, 4, 100, -1234, 55443];
     let expected = vec![3, 5, 10, 4, 100, 1234, 55443];
